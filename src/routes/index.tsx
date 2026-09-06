@@ -38,7 +38,7 @@ const detailText = [
   "Delivery across Europe: we ship to every EU country, with lead times a fleet can plan around.",
 ];
 
-const detailTone = ["text-foreground/85", "text-foreground/55", "text-foreground/35", "text-foreground/22"];
+const detailTone: string[] = ["text-foreground/85", "text-foreground/55", "text-foreground/35", "text-foreground/22"];
 
 function Index() {
   const list = useInView<HTMLOListElement>(0.2);

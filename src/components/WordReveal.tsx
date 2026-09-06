@@ -29,10 +29,10 @@ export function useInView<T extends HTMLElement>(threshold = 0.25) {
 
 type WordRevealProps = {
   text: string;
-  as?: ElementType;
-  className?: string;
-  delay?: number;
-  stagger?: number;
+  as?: ElementType | undefined;
+  className?: string | undefined;
+  delay?: number | undefined;
+  stagger?: number | undefined;
   /** highlight words matched by index, rendered inside a wrapper */
   wrap?: (word: string, index: number) => ReactNode;
 };
