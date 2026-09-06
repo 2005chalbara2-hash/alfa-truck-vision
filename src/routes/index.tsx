@@ -111,14 +111,14 @@ function Index() {
             ))}
           </ol>
 
-          {/* centre — single hero visual, overlapping the second headline line */}
-          <figure className="col-span-4 -mt-[9vw] self-start">
+          {/* centre — single hero visual, overlapping the second headline line only */}
+          <figure className="col-span-4 -mt-[3.5vw] self-start">
             <img
               src={lamp}
               alt="LED spotlight for trucks and special vehicles"
               width={1024}
               height={1216}
-              className="mx-auto h-[30vw] w-full max-w-[24vw] rounded-[0.6vw] object-cover shadow-[0_40px_80px_-40px_rgba(30,28,26,0.45)]"
+              className="mx-auto h-[32vw] w-full max-w-[25vw] rounded-[0.6vw] object-cover shadow-[0_40px_80px_-40px_rgba(30,28,26,0.45)]"
             />
           </figure>
 
