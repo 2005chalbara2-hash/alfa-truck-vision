@@ -50,6 +50,8 @@ const reasons = [
 
 
 function Index() {
+  const [active, setActive] = useState(0);
+
   return (
     <main className="min-h-screen bg-fog font-sans text-graphite antialiased">
       <section className="relative isolate flex min-h-[56.25vw] flex-col justify-center overflow-hidden px-[4vw] py-[3.5vw]">
@@ -74,22 +76,28 @@ function Index() {
           {/* left — numbered index with dotted leaders */}
           <ol className="col-span-4 space-y-[1.6vw]">
             {reasons.map((r, i) => (
-              <li key={r.n} className="flex items-center gap-4">
+              <li
+                key={r.n}
+                onMouseEnter={() => setActive(i)}
+                onFocus={() => setActive(i)}
+                tabIndex={0}
+                className="flex cursor-default items-center gap-4 outline-none"
+              >
                 <span
-                  className={`w-[2.4rem] font-display text-[1.9rem] font-medium leading-none ${
-                    i === 0 ? "text-graphite" : "text-graphite/25"
+                  className={`w-[2.4rem] font-display text-[1.9rem] font-medium leading-none transition-colors duration-500 ${
+                    i === active ? "text-graphite" : "text-graphite/25"
                   }`}
                 >
                   {r.n}
                 </span>
                 <span
-                  className={`h-[3px] flex-1 bg-[radial-gradient(circle,currentColor_1.5px,transparent_1.6px)] bg-[length:12px_3px] bg-repeat-x ${
-                    i === 0 ? "text-graphite/70" : "text-graphite/20"
+                  className={`h-[3px] flex-1 bg-[radial-gradient(circle,currentColor_1.5px,transparent_1.6px)] bg-[length:12px_3px] bg-repeat-x transition-colors duration-500 ${
+                    i === active ? "text-graphite/70" : "text-graphite/20"
                   }`}
                 />
                 <span
-                  className={`w-[13ch] shrink-0 text-[0.7rem] uppercase leading-[1.25] tracking-[0.16em] ${
-                    i === 0 ? "text-graphite" : "text-graphite/30"
+                  className={`w-[13ch] shrink-0 text-[0.7rem] uppercase leading-[1.25] tracking-[0.16em] transition-colors duration-500 ${
+                    i === active ? "text-graphite" : "text-graphite/30"
                   }`}
                 >
                   {r.lines.map((line) => (
@@ -102,42 +110,36 @@ function Index() {
             ))}
           </ol>
 
-          {/* centre — single hero visual */}
-          <figure className="col-span-4 -mt-[2vw]">
+          {/* centre — single hero visual, overlapping the second headline line */}
+          <figure className="col-span-4 -mt-[9vw] self-start">
             <img
               src={lamp}
               alt="LED spotlight for trucks and special vehicles"
               width={1024}
               height={1216}
-              className="mx-auto h-[30vw] w-full max-w-[24vw] object-cover shadow-[0_40px_80px_-40px_rgba(30,28,26,0.45)]"
+              className="mx-auto h-[30vw] w-full max-w-[24vw] rounded-[0.6vw] object-cover shadow-[0_40px_80px_-40px_rgba(30,28,26,0.45)]"
             />
           </figure>
 
           {/* right — the argument, fading out */}
           <div className="col-span-4 self-center pr-[2vw]">
-            <h3 className="font-display text-[clamp(1.4rem,2.1vw,2.2rem)] font-medium leading-tight text-graphite">
-              Original products
+            <h3 className="font-display text-[clamp(1.4rem,2.1vw,2.2rem)] font-medium leading-tight text-graphite transition-opacity duration-500">
+              {reasons[active].title}
             </h3>
             <div className="mt-4 space-y-3 text-[0.95rem] leading-[1.45]">
-              <p className="text-graphite">
-                <span className="font-semibold">Official distributor</span> of leading European
-                lighting brands — every part arrives with its factory pedigree intact.
-              </p>
-              <p className="text-graphite/55">
-                We match the right lighting to your vehicle, from tractor units to purpose-built
-                special machinery.
-              </p>
-              <p className="text-graphite/30">
-                Certified products, fully compliant with the ECE standard — approved for road use
-                across the continent.
-              </p>
-              <p className="text-graphite/15">
-                Delivery across Europe: we ship to every EU country, with lead times a fleet can
-                plan around.
-              </p>
+              {reasons.map((r, i) => {
+                const step = (i - active + reasons.length) % reasons.length;
+                const tone = ["text-graphite", "text-graphite/55", "text-graphite/30", "text-graphite/15"][step];
+                return (
+                  <p key={r.n} className={`transition-colors duration-500 ${tone}`}>
+                    {r.body}
+                  </p>
+                );
+              })}
             </div>
           </div>
         </div>
+
 
         <footer className="mt-[2vw] flex items-center justify-between">
           <span className="text-[0.68rem] uppercase tracking-[0.3em] text-graphite/40">
