@@ -22,10 +22,10 @@ export const Route = createFileRoute("/")({
 });
 
 const reasons = [
-  { n: "01", title: "Original products" },
-  { n: "02", title: "Professional consultation" },
-  { n: "03", title: "Quality and safety" },
-  { n: "04", title: "Delivery across Europe" },
+  { n: "01", lines: ["ORIGINAL", "PRODUCTS"] },
+  { n: "02", lines: ["PROFESSIONAL", "CONSULTATION"] },
+  { n: "03", lines: ["QUALITY", "AND", "SAFETY"] },
+  { n: "04", lines: ["DELIVERY", "ACROSS", "EUROPE"] },
 ];
 
 function Index() {
@@ -42,20 +42,20 @@ function Index() {
         {/* headline */}
         <header className="text-center">
           <h2 className="font-display text-[clamp(2.4rem,5.1vw,5.4rem)] font-extrabold uppercase leading-[0.98] tracking-[0.02em] text-graphite">
-            Why ALFA TRUCK?
+            WHY ALFA TRUCK?
           </h2>
           <p className="font-display text-[clamp(2.4rem,5.1vw,5.4rem)] font-extrabold uppercase leading-[0.98] tracking-[0.02em] text-graphite/12">
-            Four reasons.
+            FOUR REASONS.
           </p>
         </header>
 
-        <div className="relative mt-[-3.5vw] grid grid-cols-12 items-center gap-x-6">
+        <div className="relative mt-[-3.5vw] grid grid-cols-12 items-center gap-x-8">
           {/* left — numbered index with dotted leaders */}
           <ol className="col-span-4 space-y-[1.6vw]">
             {reasons.map((r, i) => (
-              <li key={r.n} className="flex items-center gap-5">
+              <li key={r.n} className="flex items-center gap-4">
                 <span
-                  className={`font-display text-[1.9rem] font-medium leading-none ${
+                  className={`w-[2.4rem] font-display text-[1.9rem] font-medium leading-none ${
                     i === 0 ? "text-graphite" : "text-graphite/25"
                   }`}
                 >
@@ -67,11 +67,15 @@ function Index() {
                   }`}
                 />
                 <span
-                  className={`w-[15ch] shrink-0 whitespace-nowrap text-[0.72rem] uppercase tracking-[0.18em] ${
+                  className={`w-[13ch] shrink-0 text-[0.7rem] uppercase leading-[1.25] tracking-[0.16em] ${
                     i === 0 ? "text-graphite" : "text-graphite/30"
                   }`}
                 >
-                  {r.title}
+                  {r.lines.map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
                 </span>
               </li>
             ))}
@@ -116,13 +120,13 @@ function Index() {
 
         <footer className="mt-[2vw] flex items-center justify-between">
           <span className="text-[0.68rem] uppercase tracking-[0.3em] text-graphite/40">
-            Alfa Truck · Lighting &amp; electrics
+            ALFA TRUCK · LIGHTING &amp; ELECTRICS
           </span>
           <a
             href="#contact"
             className="group inline-flex items-center gap-3 border-b border-graphite/30 pb-1 text-[0.7rem] font-medium uppercase tracking-[0.28em] text-graphite transition-colors hover:border-graphite"
           >
-            Speak with a specialist
+            SPEAK WITH A SPECIALIST
             <span className="transition-transform duration-300 group-hover:translate-x-1">
               &#8594;
             </span>
@@ -132,3 +136,4 @@ function Index() {
     </main>
   );
 }
+
