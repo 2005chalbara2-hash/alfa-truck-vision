@@ -54,13 +54,13 @@ function Index() {
   const [active, setActive] = useState(0);
 
   return (
-    <main className="min-h-screen bg-fog font-sans text-graphite antialiased">
+    <main className="min-h-screen bg-white font-sans text-graphite antialiased">
       <section className="relative isolate flex min-h-[56.25vw] flex-col justify-center overflow-hidden px-[4vw] py-[3.5vw]">
         {/* soft blurred backdrop */}
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-fog">
-          <div className="absolute -left-[10%] top-[-15%] h-[70%] w-[55%] rounded-full bg-[color-mix(in_oklab,var(--color-bone)_85%,white)] blur-[120px]" />
-          <div className="absolute right-[-8%] top-[10%] h-[80%] w-[50%] rounded-full bg-[color-mix(in_oklab,var(--color-haze)_70%,white)] blur-[130px]" />
-          <div className="absolute bottom-[-20%] left-[25%] h-[60%] w-[55%] rounded-full bg-[color-mix(in_oklab,var(--color-haze)_55%,white)] blur-[140px]" />
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-white">
+          <div className="absolute -left-[10%] top-[-15%] h-[70%] w-[55%] rounded-full bg-[oklch(0.97_0_0)] blur-[120px]" />
+          <div className="absolute right-[-8%] top-[10%] h-[80%] w-[50%] rounded-full bg-[oklch(0.96_0_0)] blur-[130px]" />
+          <div className="absolute bottom-[-20%] left-[25%] h-[60%] w-[55%] rounded-full bg-[oklch(0.95_0_0)] blur-[140px]" />
         </div>
 
         {/* headline */}
