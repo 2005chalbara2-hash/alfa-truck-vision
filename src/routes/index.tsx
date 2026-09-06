@@ -49,7 +49,7 @@ function Index() {
           </p>
         </header>
 
-        <div className="relative mt-[-3.5vw] grid grid-cols-12 items-center gap-x-8">
+        <div className="relative mt-[1.5vw] grid grid-cols-12 items-center gap-x-8">
           {/* left — numbered index with dotted leaders */}
           <ol className="col-span-4 space-y-[1.6vw]">
             {reasons.map((r, i) => (
