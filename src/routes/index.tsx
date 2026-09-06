@@ -62,7 +62,7 @@ function Index() {
           <div className="absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(to_top,var(--color-ink-deep),transparent)]" />
         </div>
 
-        <div className="relative mx-auto flex min-h-[56.25vw] max-w-[1600px] flex-col justify-center px-[6vw] py-[7vw]">
+        <div className="relative mx-auto flex min-h-[56.25vw] max-w-[1600px] flex-col justify-center px-[6vw] py-[5vw]">
           <div className="flex items-center gap-5">
             <span className="h-px w-16 bg-brass-dim" />
             <span className="text-[0.7rem] font-medium uppercase tracking-[0.42em] text-brass">
@@ -70,7 +70,7 @@ function Index() {
             </span>
           </div>
 
-          <h2 className="mt-10 max-w-[16ch] font-display text-[clamp(3.5rem,7.4vw,8.5rem)] leading-[0.92] tracking-[-0.02em] text-bone">
+          <h2 className="mt-8 max-w-[16ch] font-display text-[clamp(3.5rem,7.4vw,8.5rem)] leading-[0.92] tracking-[-0.02em] text-bone">
             Why <span className="italic text-brass">ALFA</span> TRUCK
           </h2>
 
@@ -79,7 +79,7 @@ function Index() {
             supplied with the precision a working fleet depends on.
           </p>
 
-          <ol className="mt-[6vw] grid max-w-[46%] grid-cols-2 gap-x-14 gap-y-[3.5vw]">
+          <ol className="mt-[4vw] grid max-w-[46%] grid-cols-2 gap-x-14 gap-y-[2.6vw]">
             {reasons.map((r) => (
               <li key={r.n} className="border-t border-hairline pt-6">
                 <div className="flex items-baseline gap-4">
@@ -93,7 +93,7 @@ function Index() {
             ))}
           </ol>
 
-          <div className="mt-[5vw] flex items-center gap-10">
+          <div className="mt-[4vw] flex items-center gap-10">
             <a
               href="#contact"
               className="group inline-flex items-center gap-4 border-b border-brass-dim/60 pb-2 text-[0.72rem] font-medium uppercase tracking-[0.32em] text-brass transition-colors hover:border-brass"
