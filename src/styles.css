@@ -7,7 +7,6 @@
 @theme {
   --font-display: "Archivo", system-ui, sans-serif;
   --font-sans: "Inter Tight", system-ui, sans-serif;
-  --font-serif: "Playfair Display", Georgia, serif;
   --color-ink: oklch(0.14 0.006 60);
   --color-ink-deep: oklch(0.08 0.004 60);
   --color-brass: oklch(0.79 0.115 78);
@@ -114,8 +113,8 @@
 }
 
 .dark {
-  --background: oklch(0.045 0.002 285);
-  --foreground: oklch(0.965 0.002 285);
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
   --card: oklch(0.208 0.042 265.755);
   --card-foreground: oklch(0.984 0.003 247.858);
   --popover: oklch(0.208 0.042 265.755);
@@ -157,27 +156,4 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
-}
-
-@keyframes word-rise {
-  from {
-    opacity: 0;
-    transform: translateY(0.5em);
-    filter: blur(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
-
-@utility word-rise {
-  display: inline-block;
-  opacity: 0;
-  will-change: opacity, transform, filter;
-}
-
-.is-revealed .word-rise {
-  animation: word-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
