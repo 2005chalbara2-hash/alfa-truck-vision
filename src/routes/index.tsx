@@ -67,7 +67,7 @@ function Index() {
                   }`}
                 />
                 <span
-                  className={`w-[11ch] shrink-0 text-[0.72rem] uppercase tracking-[0.18em] ${
+                  className={`w-[15ch] shrink-0 whitespace-nowrap text-[0.72rem] uppercase tracking-[0.18em] ${
                     i === 0 ? "text-graphite" : "text-graphite/30"
                   }`}
                 >
