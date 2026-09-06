@@ -125,11 +125,11 @@ function Index() {
           {/* right — the argument, fading out */}
           <div className="col-span-4 self-center pr-[2vw]">
             <h3 className="font-display text-[clamp(1.4rem,2.1vw,2.2rem)] font-medium leading-tight text-graphite transition-opacity duration-500">
-              {reasons[active].title}
+              {reasons[active]!.title}
             </h3>
             <div className="mt-4 space-y-3 text-[0.95rem] leading-[1.45]">
               {reasons.map((_, step) => {
-                const r = reasons[(active + step) % reasons.length];
+                const r = reasons[(active + step) % reasons.length]!;
                 const tone = ["text-graphite", "text-graphite/55", "text-graphite/30", "text-graphite/15"][step];
                 return (
                   <p key={r.n} className={`transition-colors duration-500 ${tone}`}>
