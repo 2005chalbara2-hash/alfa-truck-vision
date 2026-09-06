@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import lamp from "@/assets/lamp-light.jpg";
+import lamp from "@/assets/lamp.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,47 +28,54 @@ const reasons = [
   { n: "04", title: "Delivery across Europe" },
 ];
 
+const detailText = [
+  { strong: "Official distributor", rest: " of leading European lighting brands — every part arrives with its factory pedigree intact.", opacity: "text-foreground" },
+  { strong: "", rest: "We match the right lighting to your vehicle, from tractor units to purpose-built special machinery.", opacity: "text-foreground/55" },
+  { strong: "", rest: "Certified products, fully compliant with the ECE standard — approved for road use across the continent.", opacity: "text-foreground/35" },
+  { strong: "", rest: "Delivery across Europe: we ship to every EU country, with lead times a fleet can plan around.", opacity: "text-foreground/20" },
+];
+
 function Index() {
   return (
-    <main className="min-h-screen bg-fog font-sans text-graphite antialiased">
-      <section className="relative isolate flex min-h-[56.25vw] flex-col justify-center overflow-hidden px-[4vw] py-[3.5vw]">
-        {/* soft blurred backdrop */}
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-fog">
-          <div className="absolute -left-[10%] top-[-15%] h-[70%] w-[55%] rounded-full bg-[color-mix(in_oklab,var(--color-bone)_85%,white)] blur-[120px]" />
-          <div className="absolute right-[-8%] top-[10%] h-[80%] w-[50%] rounded-full bg-[color-mix(in_oklab,var(--color-haze)_70%,white)] blur-[130px]" />
-          <div className="absolute bottom-[-20%] left-[25%] h-[60%] w-[55%] rounded-full bg-[color-mix(in_oklab,var(--color-haze)_55%,white)] blur-[140px]" />
+    <main className="min-h-screen bg-background font-sans text-foreground antialiased">
+      <section className="relative isolate flex min-h-[56.25vw] flex-col justify-center overflow-hidden px-[5vw] py-[4vw]">
+        {/* ambient brass glow behind the lamp */}
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-background">
+          <div className="absolute right-[-5%] top-[-10%] h-[85%] w-[55%] rounded-full bg-brass/8 blur-[140px]" />
+          <div className="absolute bottom-[-15%] left-[20%] h-[55%] w-[45%] rounded-full bg-brass/5 blur-[120px]" />
+          <div className="absolute left-[-10%] top-[30%] h-[45%] w-[35%] rounded-full bg-ink/60 blur-[100px]" />
         </div>
 
         {/* headline */}
-        <header className="text-center">
-          <h2 className="font-display text-[clamp(2.4rem,5.1vw,5.4rem)] font-extrabold uppercase leading-[0.98] tracking-[0.02em] text-graphite">
-            Why ALFA TRUCK?
+        <header className="relative z-10 max-w-[70vw]">
+          <h2 className="font-serif text-[clamp(2.6rem,5.4vw,5.8rem)] font-semibold leading-[1.02] tracking-[-0.02em] text-foreground">
+            Why <span className="italic text-brass">ALFA TRUCK</span>
           </h2>
-          <p className="font-display text-[clamp(2.4rem,5.1vw,5.4rem)] font-extrabold uppercase leading-[0.98] tracking-[0.02em] text-graphite/12">
-            Four reasons.
+          <p className="mt-2 font-sans text-[clamp(0.75rem,1vw,0.95rem)] uppercase tracking-[0.35em] text-foreground/35">
+            Four reasons to work with us
           </p>
         </header>
 
-        <div className="relative mt-[-3.5vw] grid grid-cols-12 items-center gap-x-6">
-          {/* left — numbered index with dotted leaders */}
-          <ol className="col-span-4 space-y-[1.6vw]">
+        <div className="relative z-10 mt-[3vw] grid grid-cols-12 items-start gap-x-8">
+          {/* left — numbered index */}
+          <ol className="col-span-3 space-y-[1.8vw] self-center">
             {reasons.map((r, i) => (
-              <li key={r.n} className="flex items-center gap-5">
+              <li key={r.n} className="flex items-center gap-4">
                 <span
-                  className={`font-display text-[1.9rem] font-medium leading-none ${
-                    i === 0 ? "text-graphite" : "text-graphite/25"
+                  className={`font-display text-[1.6rem] font-medium leading-none ${
+                    i === 0 ? "text-brass" : "text-foreground/25"
                   }`}
                 >
                   {r.n}
                 </span>
                 <span
-                  className={`h-[3px] flex-1 bg-[radial-gradient(circle,currentColor_1.5px,transparent_1.6px)] bg-[length:12px_3px] bg-repeat-x ${
-                    i === 0 ? "text-graphite/70" : "text-graphite/20"
+                  className={`h-[2px] flex-1 bg-[radial-gradient(circle,currentColor_1.5px,transparent_1.6px)] bg-[length:10px_2px] bg-repeat-x ${
+                    i === 0 ? "text-brass/60" : "text-foreground/15"
                   }`}
                 />
                 <span
-                  className={`w-[15ch] shrink-0 whitespace-nowrap text-[0.72rem] uppercase tracking-[0.18em] ${
-                    i === 0 ? "text-graphite" : "text-graphite/30"
+                  className={`w-[14ch] shrink-0 whitespace-nowrap text-[0.7rem] uppercase tracking-[0.16em] ${
+                    i === 0 ? "text-foreground" : "text-foreground/30"
                   }`}
                 >
                   {r.title}
@@ -77,50 +84,44 @@ function Index() {
             ))}
           </ol>
 
-          {/* centre — single hero visual */}
-          <figure className="col-span-4 -mt-[2vw]">
+          {/* centre/right — hero visual bleeding into darkness */}
+          <figure className="col-span-5 col-start-5 -mt-[4vw]">
             <img
               src={lamp}
-              alt="LED spotlight for trucks and special vehicles"
+              alt="Amber LED spotlight for trucks and special vehicles"
               width={1024}
               height={1216}
-              className="mx-auto h-[30vw] w-full max-w-[24vw] object-cover shadow-[0_40px_80px_-40px_rgba(30,28,26,0.45)]"
+              className="mx-auto h-[32vw] w-full max-w-[26vw] object-cover"
+              style={{
+                maskImage: "linear-gradient(to bottom, black 75%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to bottom, black 75%, transparent 100%)",
+              }}
             />
           </figure>
 
-          {/* right — the argument, fading out */}
-          <div className="col-span-4 self-center pr-[2vw]">
-            <h3 className="font-display text-[clamp(1.4rem,2.1vw,2.2rem)] font-medium leading-tight text-graphite">
+          {/* right — argument, fading out */}
+          <div className="col-span-3 col-start-10 self-center">
+            <h3 className="font-serif text-[clamp(1.3rem,2vw,2.1rem)] font-medium leading-tight text-foreground">
               Original products
             </h3>
-            <div className="mt-4 space-y-3 text-[0.95rem] leading-[1.45]">
-              <p className="text-graphite">
-                <span className="font-semibold">Official distributor</span> of leading European
-                lighting brands — every part arrives with its factory pedigree intact.
-              </p>
-              <p className="text-graphite/55">
-                We match the right lighting to your vehicle, from tractor units to purpose-built
-                special machinery.
-              </p>
-              <p className="text-graphite/30">
-                Certified products, fully compliant with the ECE standard — approved for road use
-                across the continent.
-              </p>
-              <p className="text-graphite/15">
-                Delivery across Europe: we ship to every EU country, with lead times a fleet can
-                plan around.
-              </p>
+            <div className="mt-5 space-y-3 text-[0.92rem] leading-[1.5]">
+              {detailText.map((line, idx) => (
+                <p key={idx} className={line.opacity}>
+                  {line.strong && <span className="font-semibold">{line.strong}</span>}
+                  {line.rest}
+                </p>
+              ))}
             </div>
           </div>
         </div>
 
-        <footer className="mt-[2vw] flex items-center justify-between">
-          <span className="text-[0.68rem] uppercase tracking-[0.3em] text-graphite/40">
+        <footer className="relative z-10 mt-auto flex items-center justify-between border-t border-foreground/10 pt-5">
+          <span className="text-[0.65rem] uppercase tracking-[0.32em] text-foreground/40">
             Alfa Truck · Lighting &amp; electrics
           </span>
           <a
             href="#contact"
-            className="group inline-flex items-center gap-3 border-b border-graphite/30 pb-1 text-[0.7rem] font-medium uppercase tracking-[0.28em] text-graphite transition-colors hover:border-graphite"
+            className="group inline-flex items-center gap-3 border-b border-brass/40 pb-1 text-[0.7rem] font-medium uppercase tracking-[0.28em] text-brass transition-colors hover:border-brass"
           >
             Speak with a specialist
             <span className="transition-transform duration-300 group-hover:translate-x-1">
