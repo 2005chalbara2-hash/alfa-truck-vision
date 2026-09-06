@@ -22,11 +22,32 @@ export const Route = createFileRoute("/")({
 });
 
 const reasons = [
-  { n: "01", lines: ["ORIGINAL", "PRODUCTS"] },
-  { n: "02", lines: ["PROFESSIONAL", "CONSULTATION"] },
-  { n: "03", lines: ["QUALITY", "AND", "SAFETY"] },
-  { n: "04", lines: ["DELIVERY", "ACROSS", "EUROPE"] },
+  {
+    n: "01",
+    lines: ["ORIGINAL", "PRODUCTS"],
+    title: "Original products",
+    body: "Official distributor of leading European lighting brands — every part arrives with its factory pedigree intact.",
+  },
+  {
+    n: "02",
+    lines: ["PROFESSIONAL", "CONSULTATION"],
+    title: "Professional consultation",
+    body: "We match the right lighting to your vehicle, from tractor units to purpose-built special machinery.",
+  },
+  {
+    n: "03",
+    lines: ["QUALITY", "AND", "SAFETY"],
+    title: "Quality and safety",
+    body: "Certified products, fully compliant with the ECE standard — approved for road use across the continent.",
+  },
+  {
+    n: "04",
+    lines: ["DELIVERY", "ACROSS", "EUROPE"],
+    title: "Delivery across Europe",
+    body: "We ship to every EU country, with lead times a fleet can plan around.",
+  },
 ];
+
 
 function Index() {
   return (
