@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import lamp from "@/assets/lamp.jpg";
+import { WordReveal, useInView } from "@/components/WordReveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -16,6 +17,8 @@ export const Route = createFileRoute("/")({
         content:
           "Official distributor of leading European lighting brands. Expert consultation, certified quality, delivery across Europe.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
@@ -29,38 +32,59 @@ const reasons = [
 ];
 
 const detailText = [
-  { strong: "Official distributor", rest: " of leading European lighting brands — every part arrives with its factory pedigree intact.", opacity: "text-foreground" },
-  { strong: "", rest: "We match the right lighting to your vehicle, from tractor units to purpose-built special machinery.", opacity: "text-foreground/55" },
-  { strong: "", rest: "Certified products, fully compliant with the ECE standard — approved for road use across the continent.", opacity: "text-foreground/35" },
-  { strong: "", rest: "Delivery across Europe: we ship to every EU country, with lead times a fleet can plan around.", opacity: "text-foreground/20" },
+  "Official distributor of leading European lighting brands — every part arrives with its factory pedigree intact.",
+  "We match the right lighting to your vehicle, from tractor units to purpose-built special machinery.",
+  "Certified products, fully compliant with the ECE standard — approved for road use across the continent.",
+  "Delivery across Europe: we ship to every EU country, with lead times a fleet can plan around.",
 ];
 
+const detailTone = ["text-foreground/85", "text-foreground/55", "text-foreground/35", "text-foreground/22"];
+
 function Index() {
+  const list = useInView<HTMLOListElement>(0.2);
+  const visual = useInView<HTMLElement>(0.15);
+
   return (
     <main className="min-h-screen bg-background font-sans text-foreground antialiased">
       <section className="relative isolate flex min-h-[56.25vw] flex-col justify-center overflow-hidden px-[5vw] py-[4vw]">
-        {/* ambient brass glow behind the lamp */}
+        {/* ambient light, no frames */}
         <div className="pointer-events-none absolute inset-0 -z-10 bg-background">
-          <div className="absolute right-[-5%] top-[-10%] h-[85%] w-[55%] rounded-full bg-brass/8 blur-[140px]" />
-          <div className="absolute bottom-[-15%] left-[20%] h-[55%] w-[45%] rounded-full bg-brass/5 blur-[120px]" />
-          <div className="absolute left-[-10%] top-[30%] h-[45%] w-[35%] rounded-full bg-ink/60 blur-[100px]" />
+          <div className="absolute left-1/2 top-[8%] h-[70%] w-[42%] -translate-x-1/2 rounded-full bg-brass/10 blur-[150px]" />
+          <div className="absolute bottom-[-12%] left-1/2 h-[45%] w-[60%] -translate-x-1/2 rounded-full bg-brass/[0.05] blur-[160px]" />
         </div>
 
         {/* headline */}
         <header className="relative z-10 max-w-[70vw]">
-          <h2 className="font-serif text-[clamp(2.6rem,5.4vw,5.8rem)] font-semibold leading-[1.02] tracking-[-0.02em] text-foreground">
-            Why <span className="italic text-brass">ALFA TRUCK</span>
-          </h2>
-          <p className="mt-2 font-sans text-[clamp(0.75rem,1vw,0.95rem)] uppercase tracking-[0.35em] text-foreground/35">
-            Four reasons to work with us
-          </p>
+          <WordReveal
+            as="h2"
+            text="Why ALFA TRUCK"
+            stagger={110}
+            className="font-serif text-[clamp(2.6rem,5.6vw,6rem)] font-semibold leading-[1.02] tracking-[-0.02em]"
+            wrap={(word, i) =>
+              i === 0 ? word : <span className="italic text-brass">{word}</span>
+            }
+          />
+          <WordReveal
+            as="p"
+            text="Four reasons to work with us"
+            delay={420}
+            stagger={45}
+            className="mt-3 font-sans text-[clamp(0.75rem,1vw,0.95rem)] uppercase tracking-[0.35em] text-foreground/35"
+          />
         </header>
 
         <div className="relative z-10 mt-[3vw] grid grid-cols-12 items-start gap-x-8">
           {/* left — numbered index */}
-          <ol className="col-span-3 space-y-[1.8vw] self-center">
+          <ol
+            ref={list.ref}
+            className={`col-span-3 space-y-[1.8vw] self-center ${list.inView ? "is-revealed" : ""}`}
+          >
             {reasons.map((r, i) => (
-              <li key={r.n} className="flex items-center gap-4">
+              <li
+                key={r.n}
+                className="word-rise flex items-center gap-4"
+                style={{ animationDelay: `${300 + i * 130}ms`, display: "flex" }}
+              >
                 <span
                   className={`font-display text-[1.6rem] font-medium leading-none ${
                     i === 0 ? "text-brass" : "text-foreground/25"
@@ -84,32 +108,51 @@ function Index() {
             ))}
           </ol>
 
-          {/* centre/right — hero visual bleeding into darkness */}
-          <figure className="col-span-5 col-start-5 -mt-[4vw]">
+          {/* centre — hero visual dissolving into black on every edge */}
+          <figure
+            ref={visual.ref as never}
+            className="relative col-span-5 col-start-5 -mt-[4vw] flex justify-center"
+          >
+            <div
+              className="pointer-events-none absolute left-1/2 top-1/2 h-[34vw] w-[30vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brass/12 blur-[110px]"
+              aria-hidden
+            />
             <img
               src={lamp}
               alt="Amber LED spotlight for trucks and special vehicles"
               width={1024}
               height={1216}
-              className="mx-auto h-[32vw] w-full max-w-[26vw] object-cover"
+              className={`relative h-[32vw] w-full max-w-[26vw] object-cover transition-[opacity,transform] duration-[1400ms] ease-out ${
+                visual.inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+              }`}
               style={{
-                maskImage: "linear-gradient(to bottom, black 75%, transparent 100%)",
-                WebkitMaskImage: "linear-gradient(to bottom, black 75%, transparent 100%)",
+                maskImage:
+                  "radial-gradient(ellipse 62% 58% at 50% 48%, black 38%, rgba(0,0,0,0.55) 66%, transparent 100%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse 62% 58% at 50% 48%, black 38%, rgba(0,0,0,0.55) 66%, transparent 100%)",
               }}
             />
           </figure>
 
-          {/* right — argument, fading out */}
+          {/* right — argument, fading down */}
           <div className="col-span-3 col-start-10 self-center">
-            <h3 className="font-serif text-[clamp(1.3rem,2vw,2.1rem)] font-medium leading-tight text-foreground">
-              Original products
-            </h3>
+            <WordReveal
+              as="h3"
+              text="Original products"
+              delay={200}
+              stagger={90}
+              className="font-serif text-[clamp(1.3rem,2vw,2.1rem)] font-medium leading-tight"
+            />
             <div className="mt-5 space-y-3 text-[0.92rem] leading-[1.5]">
               {detailText.map((line, idx) => (
-                <p key={idx} className={line.opacity}>
-                  {line.strong && <span className="font-semibold">{line.strong}</span>}
-                  {line.rest}
-                </p>
+                <WordReveal
+                  as="p"
+                  key={idx}
+                  text={line}
+                  delay={350 + idx * 220}
+                  stagger={22}
+                  className={detailTone[idx]}
+                />
               ))}
             </div>
           </div>
