@@ -7,6 +7,7 @@
 @theme {
   --font-display: "Archivo", system-ui, sans-serif;
   --font-sans: "Inter Tight", system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
   --color-ink: oklch(0.14 0.006 60);
   --color-ink-deep: oklch(0.08 0.004 60);
   --color-brass: oklch(0.79 0.115 78);
