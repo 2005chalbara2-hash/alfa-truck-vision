@@ -38,7 +38,12 @@ const detailText = [
   "Delivery across Europe: we ship to every EU country, with lead times a fleet can plan around.",
 ];
 
-const detailTone: string[] = ["text-foreground/85", "text-foreground/55", "text-foreground/35", "text-foreground/22"];
+const detailTone: string[] = [
+  "text-foreground/85",
+  "text-foreground/55",
+  "text-foreground/32",
+  "text-foreground/20",
+];
 
 function Index() {
   const list = useInView<HTMLOListElement>(0.2);
@@ -46,38 +51,35 @@ function Index() {
 
   return (
     <main className="min-h-screen bg-background font-sans text-foreground antialiased">
-      <section className="relative isolate flex min-h-[56.25vw] flex-col justify-center overflow-hidden px-[5vw] py-[4vw]">
-        {/* ambient light, no frames */}
+      <section className="relative isolate flex min-h-[56.25vw] flex-col overflow-hidden px-[4vw] py-[3.5vw]">
+        {/* ambient light only — no frames, no panels */}
         <div className="pointer-events-none absolute inset-0 -z-10 bg-background">
-          <div className="absolute left-1/2 top-[8%] h-[70%] w-[42%] -translate-x-1/2 rounded-full bg-brass/10 blur-[150px]" />
-          <div className="absolute bottom-[-12%] left-1/2 h-[45%] w-[60%] -translate-x-1/2 rounded-full bg-brass/[0.05] blur-[160px]" />
+          <div className="absolute left-1/2 top-[14%] h-[62%] w-[38%] -translate-x-1/2 rounded-full bg-brass/[0.09] blur-[150px]" />
+          <div className="absolute bottom-[-10%] left-1/2 h-[40%] w-[62%] -translate-x-1/2 rounded-full bg-brass/[0.04] blur-[170px]" />
         </div>
 
-        {/* headline */}
-        <header className="relative z-10 max-w-[70vw]">
+        {/* headline — condensed uppercase, second line faded */}
+        <header className="relative z-10 mt-[1vw] text-center">
           <WordReveal
             as="h2"
-            text="Why ALFA TRUCK"
-            stagger={110}
-            className="font-serif text-[clamp(2.6rem,5.6vw,6rem)] font-semibold leading-[1.02] tracking-[-0.02em]"
-            wrap={(word, i) =>
-              i === 0 ? word : <span className="italic text-brass">{word}</span>
-            }
+            text="WHY ALFA TRUCK?"
+            stagger={100}
+            className="font-display text-[clamp(3rem,7.6vw,8rem)] font-extrabold uppercase leading-[0.9] tracking-[-0.035em] text-foreground"
           />
           <WordReveal
             as="p"
-            text="Four reasons to work with us"
-            delay={420}
-            stagger={45}
-            className="mt-3 font-sans text-[clamp(0.75rem,1vw,0.95rem)] uppercase tracking-[0.35em] text-foreground/35"
+            text="FOUR REASONS."
+            delay={380}
+            stagger={90}
+            className="font-display text-[clamp(2.6rem,7vw,7.4rem)] font-extrabold uppercase leading-[0.9] tracking-[-0.035em] text-foreground/[0.09]"
           />
         </header>
 
-        <div className="relative z-10 mt-[3vw] grid grid-cols-12 items-start gap-x-8">
-          {/* left — numbered index */}
+        <div className="relative z-10 -mt-[5vw] grid grid-cols-12 items-center gap-x-6">
+          {/* left — numbered index with dotted leaders */}
           <ol
             ref={list.ref}
-            className={`col-span-3 space-y-[1.8vw] self-center ${list.inView ? "is-revealed" : ""}`}
+            className={`col-span-4 space-y-[2vw] ${list.inView ? "is-revealed" : ""}`}
           >
             {reasons.map((r, i) => (
               <li
@@ -86,20 +88,20 @@ function Index() {
                 style={{ animationDelay: `${300 + i * 130}ms`, display: "flex" }}
               >
                 <span
-                  className={`font-display text-[1.6rem] font-medium leading-none ${
-                    i === 0 ? "text-brass" : "text-foreground/25"
+                  className={`font-display text-[1.7rem] font-medium leading-none ${
+                    i === 0 ? "text-brass" : "text-foreground/18"
                   }`}
                 >
                   {r.n}
                 </span>
                 <span
-                  className={`h-[2px] flex-1 bg-[radial-gradient(circle,currentColor_1.5px,transparent_1.6px)] bg-[length:10px_2px] bg-repeat-x ${
-                    i === 0 ? "text-brass/60" : "text-foreground/15"
+                  className={`h-[2px] flex-1 bg-[radial-gradient(circle,currentColor_1.5px,transparent_1.6px)] bg-[length:11px_2px] bg-repeat-x ${
+                    i === 0 ? "text-brass/55" : "text-foreground/12"
                   }`}
                 />
                 <span
-                  className={`w-[14ch] shrink-0 whitespace-nowrap text-[0.7rem] uppercase tracking-[0.16em] ${
-                    i === 0 ? "text-foreground" : "text-foreground/30"
+                  className={`w-[13ch] shrink-0 text-[0.7rem] uppercase leading-[1.35] tracking-[0.18em] ${
+                    i === 0 ? "text-foreground" : "text-foreground/28"
                   }`}
                 >
                   {r.title}
@@ -108,13 +110,13 @@ function Index() {
             ))}
           </ol>
 
-          {/* centre — hero visual dissolving into black on every edge */}
+          {/* centre — hero visual melting into black */}
           <figure
             ref={visual.ref as never}
-            className="relative col-span-5 col-start-5 -mt-[4vw] flex justify-center"
+            className="relative col-span-4 flex justify-center"
           >
             <div
-              className="pointer-events-none absolute left-1/2 top-1/2 h-[34vw] w-[30vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brass/12 blur-[110px]"
+              className="pointer-events-none absolute left-1/2 top-1/2 h-[32vw] w-[28vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brass/[0.13] blur-[110px]"
               aria-hidden
             />
             <img
@@ -122,28 +124,28 @@ function Index() {
               alt="Amber LED spotlight for trucks and special vehicles"
               width={1024}
               height={1216}
-              className={`relative h-[32vw] w-full max-w-[26vw] object-cover transition-[opacity,transform] duration-[1400ms] ease-out ${
+              className={`relative h-[30vw] w-full max-w-[24vw] object-cover transition-[opacity,transform] duration-[1400ms] ease-out ${
                 visual.inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
               }`}
               style={{
                 maskImage:
-                  "radial-gradient(ellipse 62% 58% at 50% 48%, black 38%, rgba(0,0,0,0.55) 66%, transparent 100%)",
+                  "radial-gradient(ellipse 60% 56% at 50% 48%, black 34%, rgba(0,0,0,0.5) 64%, transparent 100%)",
                 WebkitMaskImage:
-                  "radial-gradient(ellipse 62% 58% at 50% 48%, black 38%, rgba(0,0,0,0.55) 66%, transparent 100%)",
+                  "radial-gradient(ellipse 60% 56% at 50% 48%, black 34%, rgba(0,0,0,0.5) 64%, transparent 100%)",
               }}
             />
           </figure>
 
           {/* right — argument, fading down */}
-          <div className="col-span-3 col-start-10 self-center">
+          <div className="col-span-4">
             <WordReveal
               as="h3"
               text="Original products"
               delay={200}
               stagger={90}
-              className="font-serif text-[clamp(1.3rem,2vw,2.1rem)] font-medium leading-tight"
+              className="font-sans text-[clamp(1.4rem,2.1vw,2.2rem)] font-medium leading-tight tracking-[-0.01em]"
             />
-            <div className="mt-5 space-y-3 text-[0.92rem] leading-[1.5]">
+            <div className="mt-5 space-y-3 text-[0.92rem] leading-[1.55]">
               {detailText.map((line, idx) => (
                 <WordReveal
                   as="p"
@@ -158,8 +160,8 @@ function Index() {
           </div>
         </div>
 
-        <footer className="relative z-10 mt-auto flex items-center justify-between border-t border-foreground/10 pt-5">
-          <span className="text-[0.65rem] uppercase tracking-[0.32em] text-foreground/40">
+        <footer className="relative z-10 mt-auto flex items-center justify-between pt-6">
+          <span className="text-[0.65rem] uppercase tracking-[0.32em] text-foreground/35">
             Alfa Truck · Lighting &amp; electrics
           </span>
           <a
@@ -176,3 +178,4 @@ function Index() {
     </main>
   );
 }
+
