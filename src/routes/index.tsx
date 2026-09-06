@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import lamp from "@/assets/lamp-light.jpg";
 
@@ -127,8 +128,8 @@ function Index() {
               {reasons[active].title}
             </h3>
             <div className="mt-4 space-y-3 text-[0.95rem] leading-[1.45]">
-              {reasons.map((r, i) => {
-                const step = (i - active + reasons.length) % reasons.length;
+              {reasons.map((_, step) => {
+                const r = reasons[(active + step) % reasons.length];
                 const tone = ["text-graphite", "text-graphite/55", "text-graphite/30", "text-graphite/15"][step];
                 return (
                   <p key={r.n} className={`transition-colors duration-500 ${tone}`}>
